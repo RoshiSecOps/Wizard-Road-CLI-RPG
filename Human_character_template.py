@@ -24,3 +24,10 @@ class Human:
     def is_alive(self):
         return self.__health > 0
     
+    def take_damage(self, amount):
+        self.__health -= amount
+        if self.is_alive() == False:
+            print(f"{self.__name} died.")
+            return False
+            
+    
