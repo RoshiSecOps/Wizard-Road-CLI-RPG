@@ -5,14 +5,22 @@ class Wizard(Human):
     def __init__(self, name, health, mana, element):
         super().__init__(name, health, mana)
         self.__element = element
-        self.__damage = self.__intelligence * 0.3
+        self.__damage = self.intelligence * 0.3
 
+    
     def get_damage(self):
         return self.__damage
 
     def invoke_element(self):
         return f"{self.__name} the {self.__element} Wizard"
     
+    def get_all_stats(self):
+        print(f"Name: {self.get_name()}")
+        print(f"Health: {self.get_health()}")
+        print(f"Mana: {self.get_mana()}")
+        print(f"Stamina: {self.get_stamina()}")
+        print(f"Intelligence: {self.get_intelligence()}")
+
     def get_offensive_spell_name(self):
         if self.__element == "Lightning":
             return "Lightning Bolt"

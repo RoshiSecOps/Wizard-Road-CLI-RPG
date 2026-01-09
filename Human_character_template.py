@@ -3,8 +3,15 @@ class Human:
         self.__name = name
         self.__health = health
         self.__mana = mana
-        self.__stamina = self.__health * 0.5
-        self.__intelligence = self.__mana * 1.5
+        self.stamina = self.__health * 0.5
+        self.intelligence = self.__mana * 1.5
+
+    def get_all_stats(self):
+        print(f"Name: {self.get_name}")
+        print(f"Health: {self.get_health}")
+        print(f"Mana: {self.get_mana}")
+        print(f"Stamina: {self.get_stamina}")
+        print(f"Intelligence: {self.get_intelligence}")
 
     def get_name(self):
         return self.__name
@@ -16,10 +23,10 @@ class Human:
         return self.__mana
     
     def get_stamina(self):
-        return self.__stamina
+        return self.stamina
     
     def get_intelligence(self):
-        return self.__intelligence
+        return self.intelligence
     
     def is_alive(self):
         return self.__health > 0
