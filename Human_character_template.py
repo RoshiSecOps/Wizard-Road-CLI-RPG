@@ -7,11 +7,11 @@ class Human:
         self.intelligence = self.__mana * 1.5
 
     def get_all_stats(self):
-        print(f"Name: {self.get_name}")
-        print(f"Health: {self.get_health}")
-        print(f"Mana: {self.get_mana}")
-        print(f"Stamina: {self.get_stamina}")
-        print(f"Intelligence: {self.get_intelligence}")
+        print(f"Name: {self.get_name()}")
+        print(f"Health: {self.get_health()}")
+        print(f"Mana: {self.get_mana()}")
+        print(f"Stamina: {self.get_stamina()}")
+        print(f"Intelligence: {self.get_intelligence()}")
 
     def get_name(self):
         return self.__name
@@ -34,7 +34,7 @@ class Human:
     def take_damage(self, amount):
         self.__health -= amount
         if self.is_alive() == False:
-            print(f"{self.__name} died.")
+            print(f"{self.__name} is dead.")
             return False
             
     

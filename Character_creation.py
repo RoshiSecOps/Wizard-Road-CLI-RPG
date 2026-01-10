@@ -24,7 +24,5 @@ player_one = Wizard(player_name, wizard_health, wizard_mana, player_element)
 
 print(f"\n{player_name}, you've chosen to become a {player_element} Wizard!\nGood choice! Your offensive spell is {player_one.get_offensive_spell_name()}\n")
 
-
-
 player_one.get_all_stats()
 

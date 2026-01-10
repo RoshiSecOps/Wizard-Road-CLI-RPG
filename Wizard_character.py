@@ -13,13 +13,6 @@ class Wizard(Human):
 
     def invoke_element(self):
         return f"{self.__name} the {self.__element} Wizard"
-    
-    def get_all_stats(self):
-        print(f"Name: {self.get_name()}")
-        print(f"Health: {self.get_health()}")
-        print(f"Mana: {self.get_mana()}")
-        print(f"Stamina: {self.get_stamina()}")
-        print(f"Intelligence: {self.get_intelligence()}")
 
     def get_offensive_spell_name(self):
         if self.__element == "Lightning":
