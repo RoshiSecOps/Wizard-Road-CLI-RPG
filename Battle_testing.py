@@ -17,48 +17,31 @@ for action in player_actions:
 for action in enemy_actions:
     enemy_actions_bar += f"[{enemy_actions.index(action) + 1} : {action}]"
 
-print("\n-------------------------------------")
-print("player1")
-test_player.get_all_stats()
-
-print("\n-------------------------------------")
-print("enemy1")
-test_enemy.get_all_stats()
-
-test_enemy.melee_attack(test_player)
-
-print("\n-------------------------------------")
-
-test_player.cast_offensive_spell(test_enemy)
-
-print(test_enemy.get_health())
-
 def player_turn(player, possible_actions, enemy):
     print(f"Your turn {player.get_name()}, please choose an action")
     print(possible_actions)
     choice = int(input("Choice: "))
     if choice == 1:
         player.cast_offensive_spell(enemy)
-        print(f"{enemy.get_name()} hase {enemy.get_health()} Health left!")
+        print(f"{enemy.get_name()} has {enemy.get_health()} Health left!")
     elif choice == 2:
         print("You skipped")
     elif choice == 3:
-        player.rest_turn()
+        player.rest_turn(10)
     else:
         print("Invalid choice!")
 
-# To finish enemy turn, choices will be made based on current health or random roll.
-'''def enemy_turn(monster, possible_actions, enemy):
+def enemy_turn(monster, possible_actions, enemy):
     print(f"{monster.get_name()} the orc's turn!")
     print(possible_actions)
-    if monster.get_heath() > 80:
+    if monster.get_health() > 70:
         monster.melee_attack(enemy)
-        print(f"{enemy.get_name()} hase {enemy.get_health()} Health left!")
-    elif choice == 2:
-        print("You skipped")
-    elif choice == 3:
-        enemy.rest_turn()
+        print(f"{monster.get_name()} attacks {enemy.get_name()}")
+        print(f"{enemy.get_name()} has {enemy.get_health()} Health left!")
     else:
-        print("Invalid choice!")
+        monster.rest_turn(20)
+        print(f"{monster.get_name()} has rested to heal. Current health {monster.get_health()}.")
 
-player_turn(test_player, player_actions_bar, test_enemy)'''
+player_turn(test_player, player_actions_bar, test_enemy)
+enemy_turn(test_enemy, enemy_actions_bar, test_player)
+print(test_player.get_health())

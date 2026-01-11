@@ -7,11 +7,6 @@ class Wizard(Human):
         self.__element = element
         self.__damage = self.intelligence * 0.3
 
-    
-    def rest_turn(self):
-        self.__health += 5
-        print(f"{self.get_name()} gains 5 health, current health: {self.get_health()}")
-
     def get_damage(self):
         return self.__damage
 

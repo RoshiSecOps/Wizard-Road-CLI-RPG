@@ -12,7 +12,7 @@ class Human:
         print(f"Mana: {self.get_mana()}")
         print(f"Stamina: {self.get_stamina()}")
         print(f"Intelligence: {self.get_intelligence()}")
-
+    
     def get_name(self):
         return self.__name
     
@@ -36,5 +36,9 @@ class Human:
         if self.is_alive() == False:
             print(f"{self.__name} is dead.")
             return False
+        
+    def rest_turn(self, amount):
+        self.__health += amount
+        print(f"{self.get_name()} gains {amount} health, current health: {self.get_health()}")
             
     

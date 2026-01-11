@@ -5,14 +5,14 @@ class Orc(Human):
         super().__init__(name, health)
         self.__rage = rage
         self.__damage = 5
+        self.__race = "Orc"
 
     def get_damage(self):
         return self.__damage
-    
-    def rest_turn(self):
-        self.__health += 10
-        print(f"{self.get_name()} gains 10 health, current health: {self.get_health()}")
 
+    def get_race(self):
+        return self.__race
+    
     def melee_attack(self, target):
         if target.is_alive() and self.is_enraged():
             enraged_damage = self.__damage + 5
