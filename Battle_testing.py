@@ -6,7 +6,7 @@ test_enemy = Orc("Rengar", 150, 4)
 test_player = Wizard("Zoraph", 100, 100, "Fire")
 
 player_actions = [f"Cast {test_player.get_offensive_spell_name()}", "Skip turn", "Rest"]
-enemy_actions = ["Attack", "Rest", "Skip turn"]
+enemy_actions = ["Attack", "Rest"]
 
 player_actions_bar = ""
 enemy_actions_bar = ""
@@ -40,7 +40,6 @@ def enemy_turn(monster, possible_actions, enemy):
     print(possible_actions)
     if monster.get_health() > 70:
         monster.melee_attack(enemy)
-        print(f"{monster.get_name()} attacks {enemy.get_name()}")
         print(f"{enemy.get_name()} has {enemy.get_health()} Health left!")
     else:
         monster.rest_turn(20)
