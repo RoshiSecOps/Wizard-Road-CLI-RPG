@@ -1,5 +1,5 @@
 class Human:
-    def __init__(self, name, health, mana):
+    def __init__(self, name, health, mana = 0):
         self.__name = name
         self.__health = health
         self.__mana = mana

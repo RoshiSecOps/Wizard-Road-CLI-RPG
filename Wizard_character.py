@@ -36,7 +36,7 @@ class Wizard(Human):
     def cast_offensive_spell(self, target):
         if target.is_alive():
             target.take_damage(self.__damage)
-            return f"Cast {self.get_offensive_spell_name} on {target.__name} for {self.__damage} Damage"
+            return f"Cast {self.get_offensive_spell_name} on {target.get_name()} for {self.__damage} Damage"
   
 
 
