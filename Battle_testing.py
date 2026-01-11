@@ -48,7 +48,7 @@ def player_turn(player, possible_actions, enemy):
         print("Invalid choice!")
 
 # To finish enemy turn, choices will be made based on current health or random roll.
-def enemy_turn(monster, possible_actions, enemy):
+'''def enemy_turn(monster, possible_actions, enemy):
     print(f"{monster.get_name()} the orc's turn!")
     print(possible_actions)
     if monster.get_heath() > 80:
@@ -61,4 +61,4 @@ def enemy_turn(monster, possible_actions, enemy):
     else:
         print("Invalid choice!")
 
-player_turn(test_player, player_actions_bar, test_enemy)
+player_turn(test_player, player_actions_bar, test_enemy)'''
