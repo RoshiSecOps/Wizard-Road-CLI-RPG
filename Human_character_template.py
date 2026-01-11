@@ -34,7 +34,6 @@ class Human:
     def take_damage(self, amount):
         self.__health -= amount
         if self.is_alive() == False:
-            print(f"{self.__name} is dead.")
             return False
         
     def rest_turn(self, amount):
