@@ -8,6 +8,10 @@ class Wizard(Human):
         self.__damage = self.intelligence * 0.3
 
     
+    def rest_turn(self):
+        self.__health += 5
+        print(f"{self.get_name()} gains 5 health, current health: {self.get_health()}")
+
     def get_damage(self):
         return self.__damage
 
@@ -36,7 +40,7 @@ class Wizard(Human):
     def cast_offensive_spell(self, target):
         if target.is_alive():
             target.take_damage(self.__damage)
-            return f"Cast {self.get_offensive_spell_name} on {target.get_name()} for {self.__damage} Damage"
+            print(f"Cast {self.get_offensive_spell_name()} on {target.get_name()} for {self.__damage} Damage")
   
 
 
