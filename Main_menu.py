@@ -1,4 +1,4 @@
-from os import system
+import os
 
 def open_main_menu():
     spacer_length = 0
