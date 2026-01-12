@@ -1,3 +1,5 @@
+from os import system
+
 def open_main_menu():
     spacer_length = 0
     spacer = "="
@@ -12,5 +14,10 @@ def open_main_menu():
         print(str(counter) + ": " + item)
         print(spacer)
         counter += 1
-    
+def clear_screen():
+    os.system("clear")
+
 open_main_menu()
+print("clearing screen")
+some_input = input("wait")
+clear_screen()
