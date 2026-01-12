@@ -2,24 +2,24 @@ from Human_character_template import Human
 from Orc_character import Orc
 from Wizard_character import Wizard
 
-test_enemy = Orc("Rengar", 150, 4)
-test_player = Wizard("Zoraph", 100, 100, "Fire")
+def create_user_actions(test_player):
+    player_actions = [f"Cast {test_player.get_offensive_spell_name()}", "Skip turn", "Rest"]
+    player_actions_bar = ""
+    for action in player_actions:
+        player_actions_bar += f"[{player_actions.index(action) + 1} : {action}]"
+    return player_actions_bar
 
-player_actions = [f"Cast {test_player.get_offensive_spell_name()}", "Skip turn", "Rest"]
-enemy_actions = ["Attack", "Rest"]
+def create_enemy_actions(test_enemy):
+    enemy_actions = ["Attack", "Rest"]
+    enemy_actions_bar = ""
+    for action in enemy_actions:
+        enemy_actions_bar += f"[{enemy_actions.index(action) + 1} : {action}]"
+    return enemy_actions_bar
 
-player_actions_bar = ""
-enemy_actions_bar = ""
-
-for action in player_actions:
-    player_actions_bar += f"[{player_actions.index(action) + 1} : {action}]"
-
-for action in enemy_actions:
-    enemy_actions_bar += f"[{enemy_actions.index(action) + 1} : {action}]"
-
-def player_turn(player, possible_actions, enemy):
+def player_turn(player, enemy):
     print("<------------------------------------------------------>")
     print(f"Your turn {player.get_name()}, please choose an action")
+    possible_actions = create_user_actions(player)
     print(possible_actions)
     choice = int(input("Choice: "))
     if choice == 1:
@@ -32,11 +32,12 @@ def player_turn(player, possible_actions, enemy):
     else:
         print("Invalid choice!")
 
-def enemy_turn(monster, possible_actions, enemy):
+def enemy_turn(monster, enemy):
     if monster.is_alive() == False:
         return
     print("<------------------------------------------------------>")
     print(f"{monster.get_name()} the {monster.get_race()}'s turn!")
+    possible_actions = create_enemy_actions(monster)
     print(possible_actions)
     if monster.get_health() > 70:
         monster.melee_attack(enemy)
@@ -45,7 +46,7 @@ def enemy_turn(monster, possible_actions, enemy):
         monster.rest_turn(20)
         print(f"{monster.get_name()} has rested to heal. Current health {monster.get_health()}.")
 
-def full_battle(test_enemy, enemy_actions_bar, test_player):
+def full_battle(test_enemy, test_player):
     while True:
         if test_enemy.is_alive() == False:
             print(f"{test_player.get_name()} has defeated {test_enemy.get_name()}!")
@@ -54,8 +55,6 @@ def full_battle(test_enemy, enemy_actions_bar, test_player):
             print(f"{test_player.get_name()} has perished...")
             break
         else:
-            player_turn(test_player, player_actions_bar, test_enemy)
-            enemy_turn(test_enemy, enemy_actions_bar, test_player)
+            player_turn(test_player, test_enemy)
+            enemy_turn(test_enemy, test_player)
     return
-
-full_battle(test_enemy, enemy_actions_bar, test_player)
