@@ -45,10 +45,6 @@ def enemy_turn(monster, possible_actions, enemy):
         monster.rest_turn(20)
         print(f"{monster.get_name()} has rested to heal. Current health {monster.get_health()}.")
 
-#player_turn(test_player, player_actions_bar, test_enemy)
-#enemy_turn(test_enemy, enemy_actions_bar, test_player)
-#print(test_player.get_health())
-
 def full_battle(test_enemy, enemy_actions_bar, test_player):
     while True:
         if test_enemy.is_alive() == False:
