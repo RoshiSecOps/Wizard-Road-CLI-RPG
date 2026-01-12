@@ -10,15 +10,19 @@ learn exotic spells and thrive!
 - [Demo](to add screenshots)
 - [Features](to add link to separate fatures list)
 - [The World & Story]
+	- In Wizard Road you are an elder Wizard on your way to eradicate everything EVIL!, starting with the Orcs(to determine other enemies).
 - [Gameplay]
 	- [Controls]
-	- [Command Reference]
+		- Controls are quite simple and self explanatory, follow the menu guide.
 	- [Difficulty & Modes]
+		- TBD
 - [Quick Start]
 	- [Requirements]
+		- Python3 preferrably 3.10 or higher
 	- [Install]
-	- [Run]
+		- 1. Clone the Repo
+		- 2. Start the game via Start_game.py file
+		- 3. Enjoy!
 - [Roadmap](#link_to_roadmap_file)
-- [FAQ]
 
 
