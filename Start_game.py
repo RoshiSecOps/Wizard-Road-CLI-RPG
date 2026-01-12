@@ -10,5 +10,14 @@ def trial_gameplay():
     player_choice = int(input("You choose?(1-4): "))
     if player_choice == 1:
         full_battle(first_enemy, player_one)
+    elif player_choice == 2:
+        return "Work in progress"
+    elif player_choice == 3:
+        return player_one.get_all_stats()
+    elif player_choice == 4:
+        return "Exiting"
+    else:
+        return "Invalid Choice"
 
-trial_gameplay()
+play_a_game = trial_gameplay()
+print(play_a_game)
