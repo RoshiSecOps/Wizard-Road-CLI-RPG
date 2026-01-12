@@ -17,4 +17,3 @@ def open_main_menu():
 
 def clear_screen():
     os.system("clear")
-    open_main_menu()

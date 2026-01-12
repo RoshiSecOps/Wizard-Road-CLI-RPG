@@ -9,7 +9,7 @@ def create_user_actions(test_player):
         player_actions_bar += f"[{player_actions.index(action) + 1} : {action}]"
     return player_actions_bar
 
-def create_enemy_actions(test_enemy):
+def create_enemy_actions():
     enemy_actions = ["Attack", "Rest"]
     enemy_actions_bar = ""
     for action in enemy_actions:
@@ -37,9 +37,9 @@ def enemy_turn(monster, enemy):
         return
     print("<------------------------------------------------------>")
     print(f"{monster.get_name()} the {monster.get_race()}'s turn!")
-    possible_actions = create_enemy_actions(monster)
+    possible_actions = create_enemy_actions()
     print(possible_actions)
-    if monster.get_health() > 70:
+    if monster.get_health() > 30:
         monster.melee_attack(enemy)
         print(f"{enemy.get_name()} has {enemy.get_health()} Health left!")
     else:
@@ -57,4 +57,4 @@ def full_battle(test_enemy, test_player):
         else:
             player_turn(test_player, test_enemy)
             enemy_turn(test_enemy, test_player)
-    return
+    return False
