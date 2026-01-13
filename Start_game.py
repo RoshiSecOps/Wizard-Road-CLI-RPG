@@ -37,8 +37,9 @@ def trial_gameplay():
             time.sleep(1)
             clear_screen()
         elif player_choice == 5:
-            return "Exiting"
+            print("Exiting")
+            return
         else:
-            return "Invalid Choice"
-
+            print("Invalid Choice")
+            clear_screen()
 play_a_game = trial_gameplay()

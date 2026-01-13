@@ -24,7 +24,6 @@ learn exotic spells and thrive!
 		- 2. Start the game via Start_game.py file
 		- 3. Enjoy!
 - [Roadmap]
-	- Add levelling mechanic
 	- Add Mana consumption mechanic
 	- Add additional spells based on element in shop
 	- Add stronger/elite enemies
