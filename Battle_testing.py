@@ -49,6 +49,8 @@ def enemy_turn(monster, enemy):
 def full_battle(test_enemy, test_player):
     while True:
         if test_enemy.is_alive() == False:
+            test_player.level_up()
+            print(f"Player is now level {test_player.get_level()}")
             print(f"{test_player.get_name()} has defeated {test_enemy.get_name()}!")
             break
         elif test_player.is_alive() == False:

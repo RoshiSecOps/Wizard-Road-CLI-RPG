@@ -4,7 +4,7 @@ def open_main_menu():
     spacer_length = 0
     spacer = "="
     counter = 1
-    menu_actions = ["Fight", "Enter Shop", "Current Stats", "Exit"]
+    menu_actions = ["Fight", "Enter Shop", "Current Stats", "Heal", "Exit"]
     for item in menu_actions:
         if len(item) > spacer_length:
             spacer_length = len(item)

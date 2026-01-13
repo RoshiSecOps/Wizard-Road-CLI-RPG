@@ -35,7 +35,10 @@ class Human:
         self.__health -= amount
         if self.is_alive() == False:
             return False
-        
+    def heal_full(self):
+        self.__health = 100
+        print(f"{self.get_name()} is healed to full {self.get_health()} HP")
+
     def rest_turn(self, amount):
         self.__health += amount
         print(f"{self.get_name()} gains {amount} health, current health: {self.get_health()}")

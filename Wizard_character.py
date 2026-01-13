@@ -6,6 +6,14 @@ class Wizard(Human):
         super().__init__(name, health, mana)
         self.__element = element
         self.__damage = self.intelligence * 0.3
+        self.level = 1
+
+    def get_level(self):
+        return self.level
+
+    def level_up(self):
+        self.level += 1
+        return self.level
 
     def get_damage(self):
         return self.__damage
