@@ -4,14 +4,14 @@ from Character_creation import *
 from Spell_book import *
 import time
 
-frost_crit = frost_spell_chill("Chill", "Your next Frost bolt will have it's damage tripled")
-frost_heal = frost_spell_iceblock("Ice Block", 60, "Surround yourself in a block of ICE, healing for 60 points")
+frost_crit = frost_spell_chill("Chill", "Your next Frost bolt will have it's damage tripled",0)
+frost_heal = frost_spell_iceblock("Ice Block", "Surround yourself in a block of ICE, healing for 60 points", 60)
 
-fire_crit = fire_spell_combustion("Combustion", "Combust, dealing critical damage on your next attack!")
-fire_heal = fire_spell_goldenflame("Golden Flames", 60, "Engulf in golden flames, healing for 60 points")
+fire_crit = fire_spell_combustion("Combustion", "Combust, dealing critical damage on your next attack!",0)
+fire_heal = fire_spell_goldenflame("Golden Flames", "Engulf in golden flames, healing for 60 points", 60)
 
-lightning_crit = lightning_spell_thundering("Thundering", "Call forth the thunder! Damage of next attack is tripled!")
-lightning_heal = lightning_spell_flashheal("Flash Heal", 60, "Call forth a flash of lightning that heals you for 60 points")
+lightning_crit = lightning_spell_thundering("Thundering", "Call forth the thunder! Damage of next attack is tripled!",0)
+lightning_heal = lightning_spell_flashheal("Flash Heal", "Call forth a flash of lightning that heals you for 60 points", 60)
 
 Frost_spell_book = [frost_crit, frost_heal]
 Fire_spell_book = [fire_crit, fire_heal]
@@ -47,6 +47,7 @@ def trial_gameplay():
                         print('-----------------------------')
                         print(spell.get_description())
                         print('-----------------------------')
+                    spell_choice = input("Would you like to lear one of there spells?")
                 if player_one.get_element() == "Frost":
                     for spell in Frost_spell_book:
                         print("=============================")
@@ -56,6 +57,7 @@ def trial_gameplay():
                         print('-----------------------------')
                         print(spell.get_description())
                         print('-----------------------------')
+                    spell_choice = input("Would you like to lear one of there spells?")
                 if player_one.get_element() == "Lightning":
                     for spell in Lightning_spell_book:
                         print("=============================")
@@ -65,6 +67,7 @@ def trial_gameplay():
                         print('-----------------------------')
                         print(spell.get_description())
                         print('-----------------------------')
+                    spell_choice = input("Would you like to lear one of there spells?")
         elif player_choice == 3:
             player_one.get_all_stats()
             print(f"Current level [{player_one.get_level()}]")
