@@ -6,10 +6,14 @@ class Wizard(Human):
         super().__init__(name, health, mana)
         self.__element = element
         self.__damage = self.intelligence * 0.3
+        self.crit = 0
         self.level = 1
 
     def get_level(self):
         return self.level
+    
+    def get_element(self):
+        return self.__element
 
     def level_up(self):
         self.level += 1
@@ -20,6 +24,9 @@ class Wizard(Human):
 
     def invoke_element(self):
         return f"{self.__name} the {self.__element} Wizard"
+    
+    def enable_crit(self):
+        self.crit = 1
 
     def get_offensive_spell_name(self):
         if self.__element == "Lightning":
@@ -41,6 +48,11 @@ class Wizard(Human):
             return f"{self.__name}, your attack spell is Frost Bolt, it deals {self.__damage} damage!"
     
     def cast_offensive_spell(self, target):
+        if target.is_alive() and self.crit == 1:
+            target.take_damage(self.__damage * 3)
+            print(f"Cast CRITICAL {self.get_offensive_spell_name()} on {target.get_name()} for {self.__damage * 3} Damage")
+            self.crit = 0
+
         if target.is_alive():
             target.take_damage(self.__damage)
             print(f"Cast {self.get_offensive_spell_name()} on {target.get_name()} for {self.__damage} Damage")
