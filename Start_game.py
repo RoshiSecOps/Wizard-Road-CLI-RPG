@@ -27,8 +27,12 @@ def trial_gameplay():
         player_choice = int(input("You choose?( 1 - 5 ): "))
         if player_choice == 1:
             if first_enemy.is_alive() == True:
+                print(f"{player_one.get_name()} is fighting {first_enemy.get_name()}, fight starts in 2 seconds!")
+                time.sleep(2)
                 full_battle(first_enemy, player_one)
             else:
+                print(f"{player_one.get_name()} is fighting {second_enemy.get_name()}, fight starts in 2 seconds!")
+                time.sleep(2)
                 full_battle(second_enemy, player_one)
             clear_screen()
         elif player_choice == 2:

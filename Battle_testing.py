@@ -1,6 +1,7 @@
 from Human_character_template import Human
 from Orc_character import Orc
 from Wizard_character import Wizard
+import time
 
 def create_user_actions(test_player):
     player_actions = [f"Cast {test_player.get_offensive_spell_name()}", "Skip turn", "Rest"]
@@ -50,13 +51,18 @@ def full_battle(test_enemy, test_player):
     while True:
         if test_enemy.is_alive() == False:
             test_player.level_up()
-            print(f"Player is now level {test_player.get_level()}")
             print(f"{test_player.get_name()} has defeated {test_enemy.get_name()}!")
+            print("<------------------------------------------------------>")
+            print(f"Player is now level {test_player.get_level()}, going back to main menu in 2 seconds.")
+            time.sleep(2)
             break
         elif test_player.is_alive() == False:
             print(f"{test_player.get_name()} has perished...")
             break
         else:
             player_turn(test_player, test_enemy)
+            time.sleep(1)
             enemy_turn(test_enemy, test_player)
+            time.sleep(1)
     return False
+
