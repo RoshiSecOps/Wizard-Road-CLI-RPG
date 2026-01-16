@@ -81,9 +81,9 @@ def trial_gameplay(buff, heal):
                 time.sleep(2)
                 full_battle(second_enemy, player_one, buff, heal)
             elif third_enemy.is_alive() == True:
-                print(f"{player_one.get_name()} is fighting {second_enemy.get_name()}, fight starts in 2 seconds!")
+                print(f"{player_one.get_name()} is fighting {third_enemy.get_name()}, fight starts in 2 seconds!")
                 time.sleep(2)
-                full_battle(second_enemy, player_one, buff, heal)
+                full_battle(third_enemy, player_one, buff, heal)
             else:
                 print("You've completed the Game, congratulations!")
             clear_screen()
