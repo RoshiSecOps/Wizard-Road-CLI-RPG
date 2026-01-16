@@ -1,5 +1,7 @@
 from Wizard_character import *
 from Human_character_template import *
+from Main_menu import clear_screen
+import time
 
 def create_character():
     wizard_elements = ["Fire", "Frost", "Lightning"]
@@ -11,7 +13,11 @@ def create_character():
     player_name = input("What is your name, adventurer? \n")
     player_name = player_name.lower().capitalize()
 
+    time.sleep(1)
+
     print(f"\nGreetings, {player_name}! It is time to pick your elemental prowess!\nAvailable options are:")
+
+    time.sleep(1)
 
     for i in range(0, 3):
         element_number = i+1
@@ -23,8 +29,11 @@ def create_character():
 
     player_one = Wizard(player_name, wizard_health, wizard_mana, player_element)
 
-    print(f"\n{player_name}, you've chosen to become a {player_element} Wizard!\nGood choice! Your offensive spell is {player_one.get_offensive_spell_name()}\n")
+    time.sleep(1)
 
-    player_one.get_all_stats()
+    print(f"\n{player_name}, you've chosen to become a {player_element} Wizard!\nGood choice! Your offensive spell is {player_one.get_offensive_spell_name()}\nGoing to main menu now...")
+
+    time.sleep(1)
+    clear_screen()
     return player_one
 
