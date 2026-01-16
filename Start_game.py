@@ -40,10 +40,11 @@ def get_spellbook_by_element(player_one):
 
 actual_spellbook, buff, heal = get_spellbook_by_element(player_one)
 
-first_enemy = Orc("Rengar", 150, 4)
-second_enemy = Orc("Rengar's cousin", 150, 4)
+first_enemy = Orc("Rengar", 150, 5, 5)
+second_enemy = Orc("Rengar's cousin", 150, 10, 5)
+third_enemy = Orc("The BOSS", 300, 20, 5)
 
-def learn_advanced_spell(player, choice, available_spells):
+def learn_advanced_spell(player, choice, available_spells, buff, heal):
     if choice == 1 and len(available_spells) == 2:
         player.learn_buff()
         time.sleep(1)
@@ -52,15 +53,14 @@ def learn_advanced_spell(player, choice, available_spells):
         player.learn_heal()
         time.sleep(1)
         clear_screen()
-    elif choice == 1 and len(available_spells) == 1 and available_spells[0] == frost_crit:
+    elif choice == 1 and len(available_spells) == 1 and available_spells[0] == buff:
         player.learn_buff()
         time.sleep(1)
         clear_screen()
-    elif choice == 1 and len(available_spells) == 1 and available_spells[0] == frost_heal:
+    elif choice == 1 and len(available_spells) == 1 and available_spells[0] == heal:
         player.learn_heal()
         time.sleep(1)
         clear_screen()
-        player.learn_heal()
     else:
         time.sleep(1)
         clear_screen()
@@ -76,13 +76,19 @@ def trial_gameplay(buff, heal):
                 print(f"{player_one.get_name()} is fighting {first_enemy.get_name()}, fight starts in 2 seconds!")
                 time.sleep(2)
                 full_battle(first_enemy, player_one, buff, heal)
-            else:
+            elif second_enemy.is_alive() == True:
                 print(f"{player_one.get_name()} is fighting {second_enemy.get_name()}, fight starts in 2 seconds!")
                 time.sleep(2)
-                full_battle(second_enemy, player_one)
+                full_battle(second_enemy, player_one, buff, heal)
+            elif third_enemy.is_alive() == True:
+                print(f"{player_one.get_name()} is fighting {second_enemy.get_name()}, fight starts in 2 seconds!")
+                time.sleep(2)
+                full_battle(second_enemy, player_one, buff, heal)
+            else:
+                print("You've completed the Game, congratulations!")
             clear_screen()
         elif player_choice == 2:
-            if player_one.get_level() > 2:
+            if player_one.get_level() < 2:
                 print("Level too low, come back once you are stronger!")
                 print("[ Going back to main menu in 2 seconds ]")
                 time.sleep(2)
@@ -106,11 +112,13 @@ def trial_gameplay(buff, heal):
                             counter += 1
                         spell_choice = int(input("Would you like to lear one of there spells? (pick 1 or 2)"))
                         if spell_choice == 1:
-                            learn_advanced_spell(player_one, spell_choice, actual_spellbook)
+                            learn_advanced_spell(player_one, spell_choice, actual_spellbook, buff, heal)
                             del actual_spellbook[0]
-                        else:
-                            learn_advanced_spell(player_one, spell_choice, actual_spellbook)
+                        elif spell_choice == 2:
+                            learn_advanced_spell(player_one, spell_choice, actual_spellbook, buff, heal)
                             del actual_spellbook[1]
+                        else:
+                            print("Not a valid choice")
                 if player_one.get_element() == "Frost":
                     if len(actual_spellbook) == 0:
                         print("All spells learned.")
@@ -125,13 +133,16 @@ def trial_gameplay(buff, heal):
                             print('-----------------------------')
                             print(spell.get_description())
                             print('-----------------------------')
+                            counter += 1
                         spell_choice = int(input("Would you like to lear one of there spells? (pick 1 or 2)"))
                         if spell_choice == 1:
-                            learn_advanced_spell(player_one, spell_choice, actual_spellbook)
+                            learn_advanced_spell(player_one, spell_choice, actual_spellbook, buff, heal)
                             del actual_spellbook[0]
-                        else:
-                            learn_advanced_spell(player_one, spell_choice, actual_spellbook)
+                        elif spell_choice == 2:
+                            learn_advanced_spell(player_one, spell_choice, actual_spellbook, buff, heal)
                             del actual_spellbook[1]
+                        else:
+                            print("Not a valid choice")
                 if player_one.get_element() == "Lightning":
                     if len(actual_spellbook) == 0:
                         print("All spells learned.")
@@ -146,15 +157,20 @@ def trial_gameplay(buff, heal):
                             print('-----------------------------')
                             print(spell.get_description())
                             print('-----------------------------')
+                            counter += 1
                         spell_choice = int(input("Would you like to lear one of there spells? (pick 1 or 2)"))
                         if spell_choice == 1:
-                            learn_advanced_spell(player_one, spell_choice, actual_spellbook)
+                            learn_advanced_spell(player_one, spell_choice, actual_spellbook, buff, heal)
                             del actual_spellbook[0]
-                        else:
-                            learn_advanced_spell(player_one, spell_choice, actual_spellbook)
+                        elif spell_choice == 2:
+                            learn_advanced_spell(player_one, spell_choice, actual_spellbook, buff, heal)
                             del actual_spellbook[1]
+                        else:
+                            print("Not a valid choice")
         elif player_choice == 3:
             player_one.get_all_stats()
+            print(player_one.can_buff())
+            print(player_one.can_heal())
             print(f"Current level [{player_one.get_level()}]")
             print("[ Going back to menu in 2 seconds ]")
             time.sleep(2)

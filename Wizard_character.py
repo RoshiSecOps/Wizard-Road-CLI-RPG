@@ -54,8 +54,8 @@ class Wizard(Human):
             target.take_damage(self.__damage * 3)
             print(f"Cast CRITICAL {self.get_offensive_spell_name()} on {target.get_name()} for {self.__damage * 3} Damage")
             self.crit = 0
-
-        if target.is_alive():
+            
+        elif target.is_alive():
             target.take_damage(self.__damage)
             print(f"Cast {self.get_offensive_spell_name()} on {target.get_name()} for {self.__damage} Damage")
   
