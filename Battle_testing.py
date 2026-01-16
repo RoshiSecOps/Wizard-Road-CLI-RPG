@@ -3,11 +3,13 @@ from Orc_character import Orc
 from Wizard_character import Wizard
 import time
 
-def create_user_actions(test_player):
+def create_user_actions(test_player, buff, heal):
     player_actions = [f"Cast {test_player.get_offensive_spell_name()}", "Skip turn", "Rest"]
     player_actions_bar = ""
     for action in player_actions:
         player_actions_bar += f"[{player_actions.index(action) + 1} : {action}]"
+    if test_player.can_buff() == True and test_player.can_heal() == True:
+        player_actions_bar = player_actions_bar + f"[4: {buff.get_name()}] [5: {heal.get_name()}]"
     return player_actions_bar
 
 def create_enemy_actions():
@@ -17,10 +19,10 @@ def create_enemy_actions():
         enemy_actions_bar += f"[{enemy_actions.index(action) + 1} : {action}]"
     return enemy_actions_bar
 
-def player_turn(player, enemy):
+def player_turn(player, enemy, buff, heal):
     print("<------------------------------------------------------>")
     print(f"Your turn {player.get_name()}, please choose an action")
-    possible_actions = create_user_actions(player)
+    possible_actions = create_user_actions(player, buff, heal)
     print(possible_actions)
     choice = int(input("Choice: "))
     if choice == 1:
@@ -30,6 +32,17 @@ def player_turn(player, enemy):
         print("You skipped")
     elif choice == 3:
         player.rest_turn(10)
+    elif choice == 4:
+        if player.can_buff() == True:
+            buff.cast_spell(player)
+        else:
+            print("Spell not unlocked")
+    elif choice == 5:
+        if player.can_heal() == True:
+            heal.cast_spell(player)
+            print(f"Current health {player.get_health()}")
+        else:
+            print("Spell not unlocked")
     else:
         print("Invalid choice!")
 
@@ -47,7 +60,7 @@ def enemy_turn(monster, enemy):
         monster.rest_turn(20)
         print(f"{monster.get_name()} has rested to heal. Current health {monster.get_health()}.")
 
-def full_battle(test_enemy, test_player):
+def full_battle(test_enemy, test_player, buff, heal):
     while True:
         if test_enemy.is_alive() == False:
             test_player.level_up()
@@ -60,7 +73,7 @@ def full_battle(test_enemy, test_player):
             print(f"{test_player.get_name()} has perished...")
             break
         else:
-            player_turn(test_player, test_enemy)
+            player_turn(test_player, test_enemy, buff, heal)
             time.sleep(1)
             enemy_turn(test_enemy, test_player)
             time.sleep(1)

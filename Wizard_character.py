@@ -65,4 +65,27 @@ class Wizard(Human):
     def cast_defensive_spell(self, spell):
         spell.cast_spell(self)
 
+    def learn_buff(self):
+        self.buff_spell += 1
+        print("Crits incoming!")
+    
+    def learn_heal(self):
+        self.defensive_spell += 1
+        print("Gonna heal harder now!")
+
+    def get_can_buff(self):
+        return self.buff_spell
+    
+    def get_can_heal(self):
+        return self.defensive_spell
+    
+    def can_buff(self):
+        if self.get_can_buff() == 1:
+            return True
+        return False
+
+    def can_heal(self):
+        if self.get_can_heal() == 1:
+            return True
+        return False
 

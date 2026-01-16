@@ -13,15 +13,61 @@ fire_heal = fire_spell_goldenflame("Golden Flames", "Engulf in golden flames, he
 lightning_crit = lightning_spell_thundering("Thundering", "Call forth the thunder! Damage of next attack is tripled!",0)
 lightning_heal = lightning_spell_flashheal("Flash Heal", "Call forth a flash of lightning that heals you for 60 points", 60)
 
-Frost_spell_book = [frost_crit, frost_heal]
-Fire_spell_book = [fire_crit, fire_heal]
-Lightning_spell_book = [lightning_crit, lightning_heal]
+Frost_spell_book = []
+Fire_spell_book = []
+Lightning_spell_book = []
 
 player_one = create_character()
+
+def get_spellbook_by_element(player_one):
+    if player_one.get_element() == "Frost":
+        Frost_spell_book = [frost_crit, frost_heal]
+        buff = frost_crit
+        heal = frost_heal
+        return Frost_spell_book, buff, heal
+    
+    elif player_one.get_element() == "Fire":
+        Fire_spell_book = [fire_crit, fire_heal]
+        buff = fire_crit
+        heal = fire_heal
+        return Fire_spell_book, buff, heal
+
+    elif player_one.get_element() == "Lightning":
+        Lightning_spell_book = [lightning_crit, lightning_heal]
+        buff = lightning_crit
+        heal = lightning_heal
+        return Lightning_spell_book, buff, heal
+
+actual_spellbook, buff, heal = get_spellbook_by_element(player_one)
+
 first_enemy = Orc("Rengar", 150, 4)
 second_enemy = Orc("Rengar's cousin", 150, 4)
 
-def trial_gameplay():
+def learn_advanced_spell(player, choice, available_spells):
+    if choice == 1 and len(available_spells) == 2:
+        player.learn_buff()
+        time.sleep(1)
+        clear_screen()
+    elif choice == 2 and len(available_spells) == 2:
+        player.learn_heal()
+        time.sleep(1)
+        clear_screen()
+    elif choice == 1 and len(available_spells) == 1 and available_spells[0] == frost_crit:
+        player.learn_buff()
+        time.sleep(1)
+        clear_screen()
+    elif choice == 1 and len(available_spells) == 1 and available_spells[0] == frost_heal:
+        player.learn_heal()
+        time.sleep(1)
+        clear_screen()
+        player.learn_heal()
+    else:
+        time.sleep(1)
+        clear_screen()
+        return
+        
+
+def trial_gameplay(buff, heal):
     while player_one.is_alive() == True:
         open_main_menu()
         player_choice = int(input("You choose?( 1 - 5 ): "))
@@ -29,7 +75,7 @@ def trial_gameplay():
             if first_enemy.is_alive() == True:
                 print(f"{player_one.get_name()} is fighting {first_enemy.get_name()}, fight starts in 2 seconds!")
                 time.sleep(2)
-                full_battle(first_enemy, player_one)
+                full_battle(first_enemy, player_one, buff, heal)
             else:
                 print(f"{player_one.get_name()} is fighting {second_enemy.get_name()}, fight starts in 2 seconds!")
                 time.sleep(2)
@@ -44,12 +90,12 @@ def trial_gameplay():
             else:
                 counter = 1
                 if player_one.get_element() == "Fire":
-                    if len(Fire_spell_book) == 0:
+                    if len(actual_spellbook) == 0:
                         print("All spells learned.")
                         time.sleep(1)
                         clear_screen()
                     else:
-                        for spell in Fire_spell_book:
+                        for spell in actual_spellbook:
                             print("=============================")
                             print(f"{counter}: {spell.get_name()}")
                             print('-----------------------------')
@@ -60,16 +106,18 @@ def trial_gameplay():
                             counter += 1
                         spell_choice = int(input("Would you like to lear one of there spells? (pick 1 or 2)"))
                         if spell_choice == 1:
-                            del Fire_spell_book[0]
+                            learn_advanced_spell(player_one, spell_choice, actual_spellbook)
+                            del actual_spellbook[0]
                         else:
-                            del Fire_spell_book[1]
+                            learn_advanced_spell(player_one, spell_choice, actual_spellbook)
+                            del actual_spellbook[1]
                 if player_one.get_element() == "Frost":
-                    if len(Frost_spell_book) == 0:
+                    if len(actual_spellbook) == 0:
                         print("All spells learned.")
                         time.sleep(1)
                         clear_screen()
                     else:
-                        for spell in Frost_spell_book:
+                        for spell in actual_spellbook:
                             print("=============================")
                             print(f"{counter}: {spell.get_name()}")
                             print('-----------------------------')
@@ -79,16 +127,18 @@ def trial_gameplay():
                             print('-----------------------------')
                         spell_choice = int(input("Would you like to lear one of there spells? (pick 1 or 2)"))
                         if spell_choice == 1:
-                            del Frost_spell_book[0]
+                            learn_advanced_spell(player_one, spell_choice, actual_spellbook)
+                            del actual_spellbook[0]
                         else:
-                            del Frost_spell_book[1]
+                            learn_advanced_spell(player_one, spell_choice, actual_spellbook)
+                            del actual_spellbook[1]
                 if player_one.get_element() == "Lightning":
-                    if len(Lightning_spell_book) == 0:
+                    if len(actual_spellbook) == 0:
                         print("All spells learned.")
                         time.sleep(1)
                         clear_screen()
                     else:
-                        for spell in Lightning_spell_book:
+                        for spell in actual_spellbook:
                             print("=============================")
                             print(f"{counter}: {spell.get_name()}")
                             print('-----------------------------')
@@ -98,9 +148,11 @@ def trial_gameplay():
                             print('-----------------------------')
                         spell_choice = int(input("Would you like to lear one of there spells? (pick 1 or 2)"))
                         if spell_choice == 1:
-                            del Lightning_spell_book[0]
+                            learn_advanced_spell(player_one, spell_choice, actual_spellbook)
+                            del actual_spellbook[0]
                         else:
-                            del Lightning_spell_book[1]
+                            learn_advanced_spell(player_one, spell_choice, actual_spellbook)
+                            del actual_spellbook[1]
         elif player_choice == 3:
             player_one.get_all_stats()
             print(f"Current level [{player_one.get_level()}]")
@@ -120,4 +172,4 @@ def trial_gameplay():
         else:
             print("Invalid Choice")
             clear_screen()
-play_a_game = trial_gameplay()
+play_a_game = trial_gameplay(buff, heal)
