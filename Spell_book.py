@@ -60,7 +60,8 @@ class lightning_spell_flashheal(basic_spell):
 
     def cast_spell(self, caster):
         caster.rest_turn(self.damage)
-
+        
+'''
 frost_crit = frost_spell_chill("Chill", "Your next Frost bolt will have it's damage tripled",0)
 frost_heal = frost_spell_iceblock("Ice Block", 60, "Surround yourself in a block of ICE, healing for 60 points")
 
@@ -69,3 +70,4 @@ fire_heal = fire_spell_goldenflame("Golden Flames", 60, "Engulf in golden flames
 
 lightning_crit = lightning_spell_thundering("Thundering", "Call forth the thunder! Damage of next attack is tripled!",0)
 lightning_heal = lightning_spell_flashheal("Flash Heal", 60, "Call forth a flash of lightning that heals you for 60 points")
+'''

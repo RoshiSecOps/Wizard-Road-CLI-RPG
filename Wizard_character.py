@@ -8,6 +8,8 @@ class Wizard(Human):
         self.__damage = self.intelligence * 0.3
         self.crit = 0
         self.level = 1
+        self.buff_spell = 0
+        self.defensive_spell = 0
 
     def get_level(self):
         return self.level
@@ -52,11 +54,38 @@ class Wizard(Human):
             target.take_damage(self.__damage * 3)
             print(f"Cast CRITICAL {self.get_offensive_spell_name()} on {target.get_name()} for {self.__damage * 3} Damage")
             self.crit = 0
-
-        if target.is_alive():
+            
+        elif target.is_alive():
             target.take_damage(self.__damage)
             print(f"Cast {self.get_offensive_spell_name()} on {target.get_name()} for {self.__damage} Damage")
   
+    def cast_buff_spell(self, spell):
+        spell.cast_spell(self)
+    
+    def cast_defensive_spell(self, spell):
+        spell.cast_spell(self)
 
+    def learn_buff(self):
+        self.buff_spell += 1
+        print("Crits incoming!")
+    
+    def learn_heal(self):
+        self.defensive_spell += 1
+        print("Gonna heal harder now!")
 
+    def get_can_buff(self):
+        return self.buff_spell
+    
+    def get_can_heal(self):
+        return self.defensive_spell
+    
+    def can_buff(self):
+        if self.get_can_buff() == 1:
+            return True
+        return False
+
+    def can_heal(self):
+        if self.get_can_heal() == 1:
+            return True
+        return False
 
