@@ -8,6 +8,8 @@ class Wizard(Human):
         self.__damage = self.intelligence * 0.3
         self.crit = 0
         self.level = 1
+        self.buff_spell = 0
+        self.defensive_spell = 0
 
     def get_level(self):
         return self.level
@@ -57,6 +59,10 @@ class Wizard(Human):
             target.take_damage(self.__damage)
             print(f"Cast {self.get_offensive_spell_name()} on {target.get_name()} for {self.__damage} Damage")
   
-
+    def cast_buff_spell(self, spell):
+        spell.cast_spell(self)
+    
+    def cast_defensive_spell(self, spell):
+        spell.cast_spell(self)
 
 

@@ -36,42 +36,71 @@ def trial_gameplay():
                 full_battle(second_enemy, player_one)
             clear_screen()
         elif player_choice == 2:
-            if player_one.get_level() < 2:
+            if player_one.get_level() > 2:
                 print("Level too low, come back once you are stronger!")
                 print("[ Going back to main menu in 2 seconds ]")
                 time.sleep(2)
                 clear_screen()
             else:
+                counter = 1
                 if player_one.get_element() == "Fire":
-                    for spell in Fire_spell_book:
-                        print("=============================")
-                        print(spell.get_name())
-                        print('-----------------------------')
-                        print(f"Damage: {spell.get_damage()}")
-                        print('-----------------------------')
-                        print(spell.get_description())
-                        print('-----------------------------')
-                    spell_choice = input("Would you like to lear one of there spells?")
+                    if len(Fire_spell_book) == 0:
+                        print("All spells learned.")
+                        time.sleep(1)
+                        clear_screen()
+                    else:
+                        for spell in Fire_spell_book:
+                            print("=============================")
+                            print(f"{counter}: {spell.get_name()}")
+                            print('-----------------------------')
+                            print(f"Damage: {spell.get_damage()}")
+                            print('-----------------------------')
+                            print(spell.get_description())
+                            print('-----------------------------')
+                            counter += 1
+                        spell_choice = int(input("Would you like to lear one of there spells? (pick 1 or 2)"))
+                        if spell_choice == 1:
+                            del Fire_spell_book[0]
+                        else:
+                            del Fire_spell_book[1]
                 if player_one.get_element() == "Frost":
-                    for spell in Frost_spell_book:
-                        print("=============================")
-                        print(spell.get_name())
-                        print('-----------------------------')
-                        print(f"Damage: {spell.get_damage()}")
-                        print('-----------------------------')
-                        print(spell.get_description())
-                        print('-----------------------------')
-                    spell_choice = input("Would you like to lear one of there spells?")
+                    if len(Frost_spell_book) == 0:
+                        print("All spells learned.")
+                        time.sleep(1)
+                        clear_screen()
+                    else:
+                        for spell in Frost_spell_book:
+                            print("=============================")
+                            print(f"{counter}: {spell.get_name()}")
+                            print('-----------------------------')
+                            print(f"Damage: {spell.get_damage()}")
+                            print('-----------------------------')
+                            print(spell.get_description())
+                            print('-----------------------------')
+                        spell_choice = int(input("Would you like to lear one of there spells? (pick 1 or 2)"))
+                        if spell_choice == 1:
+                            del Frost_spell_book[0]
+                        else:
+                            del Frost_spell_book[1]
                 if player_one.get_element() == "Lightning":
-                    for spell in Lightning_spell_book:
-                        print("=============================")
-                        print(spell.get_name())
-                        print('-----------------------------')
-                        print(f"Damage: {spell.get_damage()}")
-                        print('-----------------------------')
-                        print(spell.get_description())
-                        print('-----------------------------')
-                    spell_choice = input("Would you like to lear one of there spells?")
+                    if len(Lightning_spell_book) == 0:
+                        print("All spells learned.")
+                        time.sleep(1)
+                        clear_screen()
+                    else:
+                        for spell in Lightning_spell_book:
+                            print("=============================")
+                            print(f"{counter}: {spell.get_name()}")
+                            print('-----------------------------')
+                            print(f"Damage: {spell.get_damage()}")
+                            print('-----------------------------')
+                            print(spell.get_description())
+                            print('-----------------------------')
+                        spell_choice = int(input("Would you like to lear one of there spells? (pick 1 or 2)"))
+                        if spell_choice == 1:
+                            del Lightning_spell_book[0]
+                        else:
+                            del Lightning_spell_book[1]
         elif player_choice == 3:
             player_one.get_all_stats()
             print(f"Current level [{player_one.get_level()}]")
